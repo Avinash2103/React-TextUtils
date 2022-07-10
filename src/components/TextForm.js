@@ -29,7 +29,9 @@ export default function TextForm(props) {
   return (
     <>
       <div className="container">
-        <h1>{props.heading}</h1>
+        <h1 style={{color: props.mode === "light" ? "#042743" : "white"}}>
+          {props.heading}
+        </h1>
         <div className="mb-3">
           <textarea
             className="form-control"
@@ -37,6 +39,10 @@ export default function TextForm(props) {
             onChange={handleOnChange}
             id="myBox"
             rows="12"
+            style={{
+              backgroundColor: props.mode === "light" ? "white" : "#042743",
+              color: props.mode === "light" ? "#042743" : "white",
+            }}
           ></textarea>
         </div>
         <button className="btn btn-primary mx-1" onClick={handleUpClick}>
@@ -52,14 +58,14 @@ export default function TextForm(props) {
           Remove Extra Spaces
         </button>
       </div>
-      <div className="container my-5">
+      <div className="container my-5" style={{color: props.mode === "light" ? "#042743" : "white"}}>
         <h2>Your text summary</h2>
         <p>
           {wordCout} words, {text.length} characters
         </p>
         <p>{0.008 * wordCout} minutes read</p>
         <h2>Preview</h2>
-        <p>{text}</p>
+        <p>{text.length > 0 ? text : "Enter into above textbox to preview it here"}</p>
       </div>
     </>
   );
