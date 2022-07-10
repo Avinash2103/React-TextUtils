@@ -14,7 +14,16 @@ export default function TextForm(props) {
     setText(event.target.value);
   };
 
-  const [text, setText] = useState('');
+  const handleCopy = () => {
+    navigator.clipboard.writeText(text);
+  };
+
+  const handleExtraSpaces = () => {
+    let newText = text.split(/[ ]+/);
+    setText(newText.join(" "));
+  };
+
+  const [text, setText] = useState("");
 
   let wordCout = text.split(" ").length;
   return (
@@ -35,6 +44,12 @@ export default function TextForm(props) {
         </button>
         <button className="btn btn-primary mx-1" onClick={handleLowerClick}>
           ToLowerCase
+        </button>
+        <button className="btn btn-primary mx-1" onClick={handleCopy}>
+          Copy Text
+        </button>
+        <button className="btn btn-primary mx-1" onClick={handleExtraSpaces}>
+          Remove Extra Spaces
         </button>
       </div>
       <div className="container my-5">
